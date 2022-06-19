@@ -1,0 +1,14 @@
+{
+  // Auto fix on save
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll": true
+  },
+  "code-runner.executorMap": {
+    "typescript": "clear && npx ts-node --files --transpile-only"
+  },
+  "cSpell.words": [
+    "codepaths",
+    "tsbuildinfo"
+  ]
+}
