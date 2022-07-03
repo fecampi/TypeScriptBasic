@@ -246,3 +246,12 @@
 
   console.log(person3)
 
+  //Thins in Function
+  export function thisInFunction(this: Date, nome: string, age: number): void {
+    console.log(this)
+    console.log(nome, age)
+  }
+  //Primeiro argumento quem é o Call, outros são os argumentos da função
+  thisInFunction.call(new Date(), 'Felipe', 35)
+  //Primeiro argumento quem é o Call, e no array são os argumentos da função
+  thisInFunction.apply(new Date(), ['Felipe', 35])

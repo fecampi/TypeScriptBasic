@@ -37,31 +37,18 @@ export class PersonFull {
 
 //versão curta
 export class Person {
-  static ageDefault = 0
-  static cpfDefault = '000.000.000-00'
-  constructor(protected name: string, protected lastName: string, private age: number, private _cpf: string) {
-    this.cpf = _cpf
-  }
+  constructor(protected name: string, protected lastName: string, private age: number, protected cpf: string) {}
 
   getAge(): number {
     return this.age
   }
 
-  // getters and setters
-  set cpf(cpf: string) {
-    this._cpf = cpf
-  }
-
-  get cpf(): string {
-    return this._cpf.replace(/\D/g, '')
+  getCpf(): string {
+    return this.cpf
   }
 
   getFullName(): string {
     return this.name + ' ' + this.lastName
-  }
-  //Static Factory Method
-  static newPersonDefault(name: string, lastName: string): Person {
-    return new Person(name, lastName, Person.ageDefault, Person.cpfDefault)
   }
 }
 
@@ -86,9 +73,6 @@ export class Visitor extends Person {
 }
 
 const person = new Person('Felipe1', 'Ferreira', 31, '000.000.000-00')
-person.cpf = '123.456.798-99'
-console.log(person.cpf)
-
 const employee = new Employee('Felipe2', 'Ferreira', 32, '000.000.000-00')
 const visitor = new Visitor('Felipe3', 'Ferreira', 33, '000.000.000-00', true)
 
@@ -96,6 +80,3 @@ console.log(person.getFullName())
 console.log(employee.getFullName())
 console.log(visitor.getFullName())
 console.log(visitor.verifyIsAuthorized())
-// Static
-const personDefault = Person.newPersonDefault('Carlos', 'Ferreira')
-console.log(personDefault.getFullName())
