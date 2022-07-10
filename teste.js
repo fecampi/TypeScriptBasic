@@ -7,4 +7,4 @@ const teste = name => {
   console.log(target)
 }
 
-teste()
+teste(name)

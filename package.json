@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build:backend": "tsc",
-    "dev:terminal": "npx ts-node --files --transpile-only src/index.ts",
+    "terminal": "npx ts-node --files --transpile-only src/index.ts",
     "build:frontend": "webpack -w"
   },
   "keywords": [],
