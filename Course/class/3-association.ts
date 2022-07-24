@@ -1,3 +1,9 @@
+//inversion dependency: Writer não aponta para a classe concreta (Pen ou Typewriter)
+//Associação
+//classes são independete
+// (Writter)->(Toll)
+// (Pen)-|>(Toll)
+// (Typewriter)-|>(Toll)
 export abstract class Tool {
   abstract execute(): void
 }

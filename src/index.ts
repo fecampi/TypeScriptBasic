@@ -1,46 +1,47 @@
-export abstract class Tool {
-  abstract execute(): void
+// Type Gard - Checando o codigo
+//Check in Function
+function add(a: unknown, b: unknown): number | string {
+  //use Type Gard
+  if (typeof a === 'number' && typeof b === 'number') {
+    return a + b
+  }
+  return `${a}${b}`
 }
 
-export class Pen extends Tool {
-  execute(): void {
-    console.log(`Writing...`)
+console.log(add(1, 5))
+console.log(add('a', 'b'))
+
+type TPerson = {
+  type: 'person'
+  name: string
+}
+type TAnimal = {
+  type: 'animal'
+  cor: string
+}
+type TPersonOrAnimal = TPerson | TAnimal
+
+export class Client implements TPerson {
+  type: 'person' = 'person'
+  constructor(public name: string) {}
+}
+
+export function printName(obj: TPersonOrAnimal): void {
+  // use Type Gard
+  // if ('name' in obj) console.log(obj.name);
+  // if (obj instanceof Client) console.log(obj.name);
+  const { type } = obj
+  //use Type Gard
+  if (type == 'person') {
+    const { name } = obj
+    console.log('person', name)
+    return
+  } else if (type == 'animal') {
+    const { cor } = obj
+    console.log('animal', cor)
+    return
   }
 }
 
-export class Typewriter extends Tool {
-  execute(): void {
-    console.log(`Typing...`)
-  }
-}
-
-export class Writer {
-  private _tool: Tool | null = null
-
-  set tool(tool: Tool | null) {
-    this._tool = tool
-  }
-
-  get tool(): Tool | null {
-    return this._tool
-  }
-
-  write(): void {
-    if (this.tool === null) {
-      console.log('Error...')
-      return
-    }
-    this.tool.execute()
-  }
-}
-
-const writer = new Writer()
-const pen = new Pen()
-const typewriter = new Typewriter()
-
-writer.tool = pen
-writer.write()
-writer.tool = typewriter
-writer.write()
-writer.tool = null
-writer.write()
+printName(new Client('Felipe'))
+printName({ type: 'animal', cor: 'blue' })
