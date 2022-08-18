@@ -72,6 +72,7 @@ function getString(key: TypeKey, obj: TypeObject) {
 console.log(getString(0, obj))
 console.log(getString(1, obj))
 console.log(getString(2, obj))
+
 // console.log(getString(8, obj))
 
 // --------key like type---------
@@ -126,3 +127,26 @@ class RequestBuilder {
 
 const request = new RequestBuilder() // Builder
 request.setUrl('http://www.google.com').setMethod('post').send()
+
+// ----------function overload(Não recomendado) --------
+//Baseado nos parâmetros que a função recebe ela
+//se comporta de maneira diferente
+type TypeAdder = {
+  //1 - Um Parâmetro
+  (x: number): number
+  //2- Dois Parâmetros
+  (x: number, y: number): number
+  //3- Recebendo um array de numbers
+  (...arg: number[]): number
+}
+
+const adder: TypeAdder = (x: number, y?: number, ...args: number[]) => {
+  if (args.length > 0) {
+    return args.reduce((s, v) => s + v, 0) + x + (y || 0)
+  }
+  return x + (y || 0)
+}
+
+console.log(adder(1))
+console.log(adder(1, 2))
+console.log(adder(1, 2, 3))
