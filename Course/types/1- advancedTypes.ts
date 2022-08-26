@@ -150,3 +150,17 @@ const adder: TypeAdder = (x: number, y?: number, ...args: number[]) => {
 console.log(adder(1))
 console.log(adder(1, 2))
 console.log(adder(1, 2, 3))
+
+// -------------Encadeamento opcional e Operador de coalescência nula(saber se existe)-----------
+type TypePerson = {
+  name: string
+  date?: Date
+}
+
+const person: TypePerson = {
+  name: 'Jhon',
+}
+//Com o ? temos o encadeamento opcional (preveni em caso de não existir o atributo).
+//Com o ?? temos o operador de consciência nula.
+//if (undefined, null){return 'not data}
+console.log(person.date?.toDateString() ?? 'not data')
